@@ -8,10 +8,11 @@ The assembly was written and tested in .Net 4.8.
 [![GitHub issues](https://img.shields.io/github/issues/SeppPenner/WindowsHello.svg)](https://github.com/SeppPenner/WindowsHello/issues)
 [![GitHub forks](https://img.shields.io/github/forks/SeppPenner/WindowsHello.svg)](https://github.com/SeppPenner/WindowsHello/network)
 [![GitHub stars](https://img.shields.io/github/stars/SeppPenner/WindowsHello.svg)](https://github.com/SeppPenner/WindowsHello/stargazers)
-[![GitHub license](https://img.shields.io/badge/license-AGPL-blue.svg)](https://raw.githubusercontent.com/SeppPenner/WindowsHello/master/License.txt)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://raw.githubusercontent.com/SeppPenner/WindowsHello/master/License.txt)
 [![Nuget](https://img.shields.io/badge/WindowsHello-Nuget-brightgreen.svg)](https://www.nuget.org/packages/HaemmerElectronics.SeppPenner.WindowsHello/)
 [![NuGet Downloads](https://img.shields.io/nuget/dt/HaemmerElectronics.SeppPenner.WindowsHello.svg)](https://www.nuget.org/packages/HaemmerElectronics.SeppPenner.WindowsHello/)
 [![Known Vulnerabilities](https://snyk.io/test/github/SeppPenner/WindowsHello/badge.svg)](https://snyk.io/test/github/SeppPenner/WindowsHello)
+[![Gitter](https://badges.gitter.im/WindowsHello2/community.svg)](https://gitter.im/WindowsHello2/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 ## Available for
 * NetFramework 4.5
@@ -21,7 +22,21 @@ The assembly was written and tested in .Net 4.8.
 * NetFramework 4.7.2
 * NetFramework 4.8
 
-## Basic usage:
+## Basic usage (Version 1.0.4.0 and above):
+```csharp
+public void WindowsHelloTest()
+{
+    var handle = new IntPtr();
+    var data = new byte[] { 0x32, 0x32 };
+    var provider = WinHelloProvider.CreateInstance("Hello", handle);
+    // Set the persistent key name if you want:
+    provider.SetPersistentKeyName("Test");
+    var encryptedData = provider.Encrypt(data);
+    var decryptedData = provider.PromptToDecrypt(encryptedData);
+}
+```
+
+## Basic usage (Before version 1.0.4.0):
 ```csharp
 public void WindowsHelloTest()
 {
@@ -41,6 +56,8 @@ This project is mainly taken from https://github.com/sirAndros/KeePassWinHello.
 Change history
 --------------
 
+* **Version 1.0.4.0 (2019-11-18)** : Fixed security bug (Thanks to [@Angelelz](https://github.com/Angelelz)).
+* **Version 1.0.3.0 (2019-11-08)** : Updated nuget packages.
 * **Version 1.0.2.0 (2019-06-23)** : Added icon to the nuget package.
 * **Version 1.0.0.1 (2019-05-05)** : Updated .Net version to 4.8.
 * **Version 1.0.0.0 (2019-02-09)** : 1.0 release.
